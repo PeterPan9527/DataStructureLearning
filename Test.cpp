@@ -142,7 +142,7 @@ int TopologicalSort(ALGraph *G)               //拓扑排序，检验任务调�
         count++;
         for(ArcNode *p = G->vertices[i].firstarc; p; p = p->nextarc){
             int k= p->adjvex;                 //对i号顶点的每个邻接点的入度减1
-            if(!(Indegree[k]--;)) Push(S,k);   //若入度减为0，则入栈
+            if(!(--Indegree[k])) Push(S,k);   //若入度减为0，则入栈
         }//for
     }//while
     if(count < G->vexnum) return 0;           //任务调度不可行， 有向图有回路
