@@ -1,10 +1,11 @@
-//图的邻接矩阵存储表示
+//图的邻接矩阵存储表示,深度优先搜索
 #include<stdio.h>
 #include<stdlib.h>
 #define INFINITY 32767
 #define MAX_VERTEX_NUM 20
 typedef int ArcType;       //边权值类型
 typedef char VertexType;   //顶点类型
+int visited[MAX_VERTEX_NUM];  //访问标志数组
 
 typedef struct{
     VertexType vex[MAX_VERTEX_NUM];   //顶点表
@@ -50,11 +51,38 @@ void PrintMGraph(MGraph *G)
     }
 }
 
+//邻接矩阵的DFS算法
+void DFS_adjmatrix(MGraph *G,int i)
+{
+    visited[i] = 1;
+    printf("%c -> ",G->vex[i]);
+    for(int j = 0; j < G->vexnum; ++j){
+        if(visited[j] ==0 && G->adjmatrix[i][j] != INFINITY)  //当前顶点与下一顶点间存在弧且下一顶点未被访问
+        {
+            DFS_adjmatrix(G,j);
+        }
+    }
+}
+
+//深度优先遍历
+void DFSTraverse_adjmatrix(MGraph *G)
+{
+    for(int i = 0; i < G->vexnum; ++i) visited[i] = 0;
+    for(int i = 0; i< G->vexnum; ++i){
+        if(!visited[i]){
+            DFS_adjmatrix(G,i);
+        }
+    }
+}
+
 int main(void)
 {
     MGraph G;
     CreateMGraph(&G);
     PrintMGraph(&G);
+    printf("DFS Traverse:\n");
+    DFSTraverse_adjmatrix(&G);
+    printf("End\n");
 
     system("pause");
     return 0;
