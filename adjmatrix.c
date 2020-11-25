@@ -32,7 +32,7 @@ void CreateMGraph(MGraph *G)
     } 
     //构造邻接矩阵
     for(int k = 0; k < G->arcnum; ++k){
-        printf("Input arc: \n");
+        printf("Input arc(like this:'v1 v2 w' <v1,v2 should be the index of vertex,w is weight>): \n");
         scanf("%d%d%d",&v1,&v2,&w);
         G->adjmatrix[v1][v2] = w;
         G->adjmatrix[v2][v1] = G->adjmatrix[v1][v2];   //无向图，邻接矩阵对称
