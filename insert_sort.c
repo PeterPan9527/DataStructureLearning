@@ -1,6 +1,8 @@
+//直接插入排序
 #include<stdio.h>
 #include<stdlib.h>
 
+//时间复杂度O(n^2)
 void insertSort(int r[],int n)
 {
     int i,j;     
@@ -9,7 +11,7 @@ void insertSort(int r[],int n)
         r[0] = r[i];
         while (r[0] < r[j])
         {
-            r[j + 1] = r[j];
+            r[j + 1] = r[j];         //后移
             j--;
         }
         r[j + 1] = r[0];
