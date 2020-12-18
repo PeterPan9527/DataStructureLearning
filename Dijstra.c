@@ -72,7 +72,7 @@ int findMinDist(int n)
 //dist 和 path数组都没问题，但是输出有点问题，不管了，先提交了2020/11/28
 void displayPath(int startV,int n)
 {
-    int a[MAX_VERTEX_NUM];    //辅助数组，用于输出path的正序
+    /*int a[MAX_VERTEX_NUM];    //辅助数组，用于输出path的正序
     int j,k;
     printf("ShortestPath_Dijstra:\n");
     for(int i = 0; i < n; ++i){
@@ -88,6 +88,20 @@ void displayPath(int startV,int n)
         for(int m = k; m >= 0; --m){
             printf("%d -> ",a[m]);
         }
+        printf("Length: %d\n",dist[i]);
+    }*/
+    //逆序输出
+    int j;
+    printf("ShortestPath_Dijstra:\n");
+    for(int i = 0; i < n; ++i){
+        j = i;
+        printf("End <- %d <- ",i);
+        while (path[j] != startV)
+        {
+            printf("%d <- ",path[j]);
+            j = path[j];
+        }
+        printf("%d <- Start, ",startV);
         printf("Length: %d\n",dist[i]);
     }
 }
